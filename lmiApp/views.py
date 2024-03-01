@@ -51,4 +51,4 @@ def ask_ques_evaluate_ans(prompt: str) -> str:
     )
 
     return response.choices[0].text.strip()
-    # return "openAi responses"
+    # return "openAi response"
