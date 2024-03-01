@@ -1,0 +1,1 @@
+PROMPT_FOR_GENERATING_QUESTIONS = "Generate {} {} questions on {} for someone with {} years of experience:"
