@@ -19,25 +19,24 @@ def home(request):
 @csrf_exempt
 def get_questions(request) -> JsonResponse:
     if request.method == 'POST':
-        if request.method == 'POST':
-            request_data = json.loads(request.body)
-            question_request = QuestionRequest(**request_data)
-            question_request.full_clean()
+        request_data = json.loads(request.body)
+        question_request = QuestionRequest(**request_data)
+        question_request.full_clean()
 
-            technology = question_request.technology
-            difficulty = question_request.difficulty
-            experience = question_request.experience
-            number_of_questions = question_request.number_of_questions
+        technology = question_request.technology
+        difficulty = question_request.difficulty
+        experience = question_request.experience
+        number_of_questions = question_request.number_of_questions
 
-            prompt = PROMPT_FOR_GENERATING_QUESTIONS.format(
-                number_of_questions,
-                difficulty,
-                technology,
-                experience
-            )
-            generated_questions = ask_ques_evaluate_ans(prompt).split('\n')
+        prompt = PROMPT_FOR_GENERATING_QUESTIONS.format(
+            number_of_questions,
+            difficulty,
+            technology,
+            experience
+        )
+        generated_questions = ask_ques_evaluate_ans(prompt).split('\n')
 
-            return JsonResponse({'generated_questions': generated_questions})
+        return JsonResponse({'generated_questions': generated_questions})
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
 
