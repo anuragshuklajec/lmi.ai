@@ -42,12 +42,12 @@ def get_questions(request) -> JsonResponse:
 
 
 def ask_ques_evaluate_ans(prompt: str) -> str:
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=250,  # You can adjust this based on your needs
-        n=1
-    )
+    # response = openai.Completion.create(
+    #     engine="text-davinci-003",
+    #     prompt=prompt,
+    #     max_tokens=250,  # You can adjust this based on your needs
+    #     n=1
+    # )
 
-    return response.choices[0].text.strip()
-    # return "openAi response"
+    # return response.choices[0].text.strip()
+    return "openAi response"
