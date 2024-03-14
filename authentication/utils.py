@@ -12,6 +12,7 @@ def createAccount(data,msg):
         last_name = data.get('last_name')
         dob = data.get('dob')
         email = data.get('email')
+        is_hr = data.get("is_hr")
         password = data.get('password')
         if not first_name or not last_name or not dob or not email or not password:
             msg["message"] = "All the fields are required"
@@ -28,6 +29,7 @@ def createAccount(data,msg):
                 last_name = last_name,
                 dob=dob,
                 email=email,
+                is_hr = is_hr,
                 password = password)
                 new_CustomUser.save()
                 resultset = model_to_dict(new_CustomUser)
@@ -51,6 +53,7 @@ def createSession(request ,user):
     request.session['sessionID'] = str(uuid.uuid1())       
     request.session['email'] = user.email
     request.session['ID'] = user.id
+    request.session['isHR'] = user.is_hr
 
 def getUsersProfile(user):     
         user_data = model_to_dict(user)
@@ -96,6 +99,7 @@ def logout(msg,request):
         del request.session['sessionID']
         del request.session['email']
         del request.session['ID']
+        del request.session['isHR']
         msg["success"] = True
         msg["status"] = 200
         msg["messsage"] = "Successfully logout !"
