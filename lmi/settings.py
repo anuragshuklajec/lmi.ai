@@ -27,6 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Replace with your work email's SMTP server
+EMAIL_PORT = 587  # The port number your email provider uses (typically 587 for TLS)
+EMAIL_USE_TLS = True  # Use TLS for secure communication
+EMAIL_USE_SSL = False  # Set to True if your email provider uses SSL
+EMAIL_HOST_USER = 'ai.letmeinterview@gmail.com'  # Your work email address
+EMAIL_HOST_PASSWORD = 'mzqnxabgerdjerjt'
+
 
 # Application definition
 
