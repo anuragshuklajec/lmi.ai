@@ -7,7 +7,7 @@ class CustomUser(models.Model):
     last_name = models.CharField(max_length = 20)
     is_hr = models.BooleanField(default=False)
     dob = models.DateField()
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     password = models.EmailField()
 
     def clean(self):
@@ -29,13 +29,14 @@ class Interview(models.Model):
     organisation = models.ForeignKey(Organisation, models.CASCADE)
 
 class InterviewDetail(models.Model):
-    candidate = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
+    email = models.EmailField(null=True)
+    candidate = models.ForeignKey(CustomUser,on_delete = models.CASCADE,null=True)
     interview = models.ForeignKey(Interview,on_delete = models.CASCADE)
     is_accepted = models.BooleanField(default = False)
     is_declined = models.BooleanField(default = False)
     is_attempted = models.BooleanField(default = False)
     questions = models.JSONField(null = True)
     answers = models.JSONField(null = True)
-    expiry = models.DateTimeField()
+    expiry = models.DateTimeField(null = True)
 
 

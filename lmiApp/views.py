@@ -40,8 +40,17 @@ def sendInvites(request):
     """takes in an interview ID and send invites to list of candidates over mail"""
     msg={"success": False, "message": "", "status" : 200}
     if request.method == 'POST':
-        result = invite(request,msg,"invite")
-        return JsonResponse(data = result, status = result["status"], safe=False)
+        event = request.GET.get('event', None)
+        if event == "many":
+            result = invite(request,msg,"invite-many")
+            return JsonResponse(data = result, status = result["status"], safe=False)
+        elif event == "single":
+            result = invite(request,msg,"invite-one")
+            return JsonResponse(data = result, status = result["status"], safe=False)
+        else:
+            msg["message"] = "Please specify event"
+            msg["status"] = 400
+            return JsonResponse(data = msg,status = msg["status"], safe = False)
 
     else:
         msg["message"] = "Invalid method"
@@ -86,7 +95,7 @@ def sendReminder(request):
     """takes a particular interview id and sends reminder to all those who have not appeared"""
     msg={"success": False, "message": "", "status" : 200}
     if request.method == 'POST':
-        result = invitation(request,msg,"reminder")
+        result = invite(request,msg,"reminder")
         return JsonResponse(data = result, status = result["status"], safe=False)
     else:
         msg["message"] = "Invalid method"
