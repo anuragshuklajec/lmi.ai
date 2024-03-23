@@ -25,6 +25,8 @@ class Organisation(models.Model):
 
 class Interview(models.Model):
     title = models.CharField(max_length = 50)
+    role = models.CharField(max_length = 50)
+    jd = models.TextField()
     yoe = models.IntegerField(default = 0)
     organisation = models.ForeignKey(Organisation, models.CASCADE)
 

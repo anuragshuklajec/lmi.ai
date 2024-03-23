@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+OPEN_AI_SECRET_KEY = os.getenv('OPEN_AI_SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +40,7 @@ EMAIL_PORT = 587  # The port number your email provider uses (typically 587 for 
 EMAIL_USE_TLS = True  # Use TLS for secure communication
 EMAIL_USE_SSL = False  # Set to True if your email provider uses SSL
 EMAIL_HOST_USER = 'ai.letmeinterview@gmail.com'  # Your work email address
-EMAIL_HOST_PASSWORD = 'mzqnxabgerdjerjt'
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
 
 
 # Application definition
@@ -46,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lmiApp',
-    'authentication'
+    'authentication',
+    'interviewApp'
 ]
 
 MIDDLEWARE = [
