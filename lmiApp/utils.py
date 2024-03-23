@@ -17,11 +17,11 @@ def organisation(request,msg,event):
             result = model_to_dict(organisation)
             msg["success"] = True
             msg["status"] = 200
-            msg["msg"] = result
+            msg["message"] = result
             return msg
     except Exception as e:
         msg["success"] = False
-        msg["msg"] = str(e)
+        msg["message"] = str(e)
         msg["status"] = 500
         return msg
     
@@ -38,11 +38,11 @@ def interview(request,msg,event):
             result = model_to_dict(interview)
             msg["success"] = True
             msg["status"] = 200
-            msg["msg"] = result
+            msg["message"] = result
             return msg
                 
     except Exception as e:
-        msg["msg"] = str(e)
+        msg["message"] = str(e)
         msg["status"] = 500
         return msg
 
@@ -54,7 +54,7 @@ def invite(request,msg,event):
             csv_file = request.FILES.get('csv_file')
 
             if csv_file is None:
-                msg["msg"] = 'No CSV file provided'
+                msg["message"] = 'No CSV file provided'
                 msg["status"] = 400
                 return msg
             
@@ -66,7 +66,7 @@ def invite(request,msg,event):
                 invited_count += 1
 
             msg["success"] = True
-            msg["msg"] = f"{invited_count} invitations sent successfully"
+            msg["message"] = f"{invited_count} invitations sent successfully"
             msg["status"] = 200
             return msg
         
@@ -78,7 +78,7 @@ def invite(request,msg,event):
             createInterviewDetailObject(email,interview)
             send_mail('Invitation', f"You are invited for {interview.title}!", 'from@example.com', [email])
             msg["success"] = True
-            msg["msg"] = f"invitations sent successfully"
+            msg["message"] = f"invitations sent successfully"
             msg["status"] = 200
             return msg
 
@@ -90,12 +90,12 @@ def invite(request,msg,event):
                     send_mail('Reminder', 'This is reminder for you to appear for a test!', 'from@example.com', [element.email])
                     reminder_count += 1
             msg["success"] = True
-            msg["msg"] = f"{reminder_count} reminders sent successfully"
+            msg["message"] = f"{reminder_count} reminders sent successfully"
             msg["status"] = 200
             return msg
 
     except Exception as e:
-        msg["msg"] = str(e)
+        msg["message"] = str(e)
         msg["status"] = 500
         return msg
 
@@ -107,18 +107,18 @@ def invitation(request,msg,event):
         candidate_id = request.session.get("ID")
         interview_details = InterviewDetail.objects.filter(interview__id=interview_id, candidate__id=candidate_id).first()
         if not interview_details:
-            msg["msg"] = "You are not authorized to be here"
+            msg["message"] = "You are not authorized to be here"
             msg["status"] = 400
             return msg
         if interview_details.is_accepted:
-            msg["msg"] = "You have already accepted the invitation"
+            msg["message"] = "You have already accepted the invitation"
             msg["status"] = 400
             return msg
         if event == "accept":
             interview_details.is_accepted = True
             interview_details.save()
             msg["success"] = True
-            msg["msg"] = "Bravo ! You are one step closer to your dream job"
+            msg["message"] = "Bravo ! You are one step closer to your dream job"
             msg["status"] = 200
             return msg
             
@@ -126,12 +126,12 @@ def invitation(request,msg,event):
             interview_details.is_declined = True
             interview_details.save()
             msg["success"] = True
-            msg["msg"] = "We just lost a gem candidate"
+            msg["message"] = "We just lost a gem candidate"
             msg["status"] = 200
             return msg
             
     except Exception as e:
-        msg["msg"] = str(e)
+        msg["message"] = str(e)
         msg["status"] = 500
         return msg
     
