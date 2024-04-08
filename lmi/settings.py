@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lmiApp',
     'authentication',
-    'interviewApp'
+    'interviewApp',
 ]
 
 MIDDLEWARE = [

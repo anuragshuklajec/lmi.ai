@@ -4,7 +4,7 @@ from django.contrib.sessions.models import Session
 from django.http import JsonResponse
 
 def check_session(func):
-    @wraps(func)  # used for copying func metadata
+    @wraps(func) 
     def wrapper(*args, **kwargs):
         msg= {"success": False, "message": None}
 
@@ -30,7 +30,6 @@ def check_session(func):
                 return JsonResponse(msg,safe=False)               
                                
     return wrapper
-
 
 
 def hr_required(view_func):
