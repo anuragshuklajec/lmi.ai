@@ -150,4 +150,4 @@ def evaluation(request,msg):
     except Exception as e:
         msg["message"]  =str(e)
         msg["status"] = 500
-        return msg
+        return 
