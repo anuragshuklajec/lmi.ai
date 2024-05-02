@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "286d2670-ffea-43ca-bfdd-f807e9b35493",
+		"name": "lmi_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17284530",
+		"_collection_link": "https://lunar-shuttle-526012.postman.co/workspace/lmi~295895a9-a8d9-43fe-bb9e-138fc06eb241/collection/17284530-286d2670-ffea-43ca-bfdd-f807e9b35493?action=share&source=collection_link&creator=17284530"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"Anurag\",\r\n    \"last_name\" : \"Shukla\",\r\n    \"dob\" : \"2000-05-10\",\r\n    \"email\" : \"test@gm.com\",\r\n    \"password\" : \"Anurag@123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/auth/register/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"test1@gmail.com\",\r\n    \"password\" : \"123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/auth/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/auth/logout/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "general",
+			"item": [
+				{
+					"name": "createOrganisation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\"  : \"Infosys\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/createOrganisation",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"createOrganisation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createInterview",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Round 2 Infosys DSE\",\r\n    \"yoe\" : \"2\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/createInterview",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"createInterview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendInvites(single)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"anuragshuklajec@gmail.com\",\r\n    \"interview_id\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/sendInvites?event=single",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sendInvites"
+							],
+							"query": [
+								{
+									"key": "event",
+									"value": "single"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendInvites(many)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "csv_file",
+									"contentType": "",
+									"type": "file",
+									"src": "/C:/Users/Asus/Downloads/data.csv"
+								},
+								{
+									"key": "interview_id",
+									"value": "1",
+									"contentType": "application/json",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/sendInvites?event=many",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sendInvites"
+							],
+							"query": [
+								{
+									"key": "event",
+									"value": "many"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendReminder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"interview_id\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/sendReminder",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sendReminder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "acceptInvite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"interview_id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/acceptInvite",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"acceptInvite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "declineInvite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"interview_id\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/declineInvite",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"declineInvite"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "interviewApp",
+			"item": [
+				{
+					"name": "startTest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"interview_id\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/test/starttest",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"test",
+								"starttest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "giveTest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"interview_id\" : 1,\r\n    \"answers\" : {\"1\" : \"Answer1\",\r\n    \"2\" : \"Answer2\",\r\n    \"3\" : \"Answer2\"}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/test/givetest",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"test",
+								"givetest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "evaluateTest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"interview_id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/test/evaluateTest",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"test",
+								"evaluateTest"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
